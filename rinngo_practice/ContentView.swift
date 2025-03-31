@@ -14,8 +14,14 @@ struct ContentView: View {
             Text(String(count))
                 .font(.largeTitle)
                 .fontWeight(.regular)
-            Button("Tap") {
-                count += 1
+            HStack {
+                Button("Reset") {
+                    count = 0
+                }
+
+                Button("Tap") {
+                    count += 1
+                }
             }
         }
         .padding()
