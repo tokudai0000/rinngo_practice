@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var count: Int = 0
+    @AppStorage("CountKey") var count: Int = 0
     @State var textColor: Color = .black
     var body: some View {
         VStack {
