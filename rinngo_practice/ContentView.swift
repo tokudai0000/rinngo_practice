@@ -15,26 +15,22 @@ struct ContentView: View {
             Text(String(count))
                 .font(.largeTitle)
                 .fontWeight(.regular)
-                .foregroundColor(textColor)
+                .foregroundColor(getColor())
             HStack {
                 Button("Reset") {
                     count = 0
-                    
-                    textColor = .black
                 }
 
                 Button("Tap") {
                     count += 1
-                    
-                    if (count % 3 == 0) {
-                        textColor = .red
-                    } else {
-                        textColor = .black
-                    }
                 }
             }
         }
         .padding()
+    }
+    
+    func getColor() -> Color {
+        (count % 3 == 0 && count != 0) ? .red : .black
     }
 }
 
