@@ -15,7 +15,7 @@ struct ContentView: View {
             Text(String(count))
                 .font(.largeTitle)
                 .fontWeight(.regular)
-                .foregroundColor(getColorForMultipleOf3)
+                .foregroundColor(colorForMultipleOf3)
             HStack {
                 Button("Reset") {
                     count = 0
@@ -29,7 +29,7 @@ struct ContentView: View {
         .padding()
     }
     
-    var getColorForMultipleOf3: Color {
+    var colorForMultipleOf3: Color {
         (count % 3 == 0 && count != 0) ? .red : .black
     }
 }
