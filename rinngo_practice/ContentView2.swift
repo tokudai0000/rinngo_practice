@@ -32,7 +32,7 @@ struct ContentView2: View {
     ]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(sectionItems) { sectionItem in
                     Section(header: Text(sectionItem.lang)) {
