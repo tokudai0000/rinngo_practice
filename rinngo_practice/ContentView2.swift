@@ -37,12 +37,15 @@ struct ContentView2: View {
                 ForEach(sectionItems) { sectionItem in
                     Section(header: Text(sectionItem.lang)) {
                         ForEach(sectionItem.items) { item in
-                                NavigationLink(destination: ImageView(image: item.fruit)) {
+                            NavigationLink(value: item.fruit) {
                                     Text(item.text)
                             }
                         }
                     }
                 }
+            }
+            .navigationDestination(for: String.self) {image in
+                Image(image)
             }
         }
     }
