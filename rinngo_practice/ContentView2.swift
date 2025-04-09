@@ -9,14 +9,24 @@ import SwiftUI
 
 struct ContentView2: View {
     var body: some View {
-        List {
-            Section(header: Text("日本語")) {
-                Text("りんご")
-                Text("ぶどう")
-            }
-            Section(header: Text("English")) {
-                Text("Apple")
-                Text("Grape")
+        NavigationView {
+            List {
+                Section(header: Text("日本語")) {
+                    NavigationLink(destination: AppleImage()) {
+                        Text("りんご")
+                    }
+                    NavigationLink(destination: GrapeImage()) {
+                        Text("ぶどう")
+                    }
+                }
+                Section(header: Text("English")) {
+                    NavigationLink(destination: AppleImage()) {
+                        Text("Apple")
+                    }
+                    NavigationLink(destination: GrapeImage()) {
+                        Text("Grape")
+                    }
+                }
             }
         }
     }
