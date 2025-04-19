@@ -49,9 +49,11 @@ struct GitHubSearchView: View {
                                 Text(item.name)
                                 
                                 // description
-                                Text(item.description ?? "")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                                if item.description != nil {
+                                    Text(item.description!)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
