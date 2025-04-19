@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DE580A932DB349B600FB4B02 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DE580A922DB349B600FB4B02 /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DEE9F93B2D996D8A00321F3E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE580A922DB349B600FB4B02 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DEE9F92A2D996D8900321F3E /* rinngo_practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rinngo_practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE9F93A2D996D8A00321F3E /* rinngo_practiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rinngo_practiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE9F9442D996D8A00321F3E /* rinngo_practiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rinngo_practiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +80,7 @@
 		DEE9F9212D996D8900321F3E = {
 			isa = PBXGroup;
 			children = (
+				DE580A922DB349B600FB4B02 /* Config.xcconfig */,
 				DEE9F92C2D996D8900321F3E /* rinngo_practice */,
 				DEE9F93D2D996D8A00321F3E /* rinngo_practiceTests */,
 				DEE9F9472D996D8A00321F3E /* rinngo_practiceUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE580A932DB349B600FB4B02 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +278,7 @@
 /* Begin XCBuildConfiguration section */
 		DEE9F94C2D996D8A00321F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE580A922DB349B600FB4B02 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -390,6 +398,7 @@
 		};
 		DEE9F94F2D996D8A00321F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE580A922DB349B600FB4B02 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -399,6 +408,7 @@
 				DEVELOPMENT_TEAM = 67447MWT6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "rinngo-practice-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +438,7 @@
 				DEVELOPMENT_TEAM = 67447MWT6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "rinngo-practice-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,6 +459,7 @@
 		};
 		DEE9F9522D996D8A00321F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE580A922DB349B600FB4B02 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +498,7 @@
 		};
 		DEE9F9552D996D8A00321F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE580A922DB349B600FB4B02 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
