@@ -12,6 +12,7 @@ struct Repo: Decodable {
     let name: String
     let html_url: String
     let languages_url: String
+    let description: String?
 }
 
 struct RepoItem: Identifiable, Hashable {
@@ -19,6 +20,7 @@ struct RepoItem: Identifiable, Hashable {
     let name: String
     let html_url: String
     let language_url: String
+    let description: String?
 }
 
 struct GitHubSearchView: View {
@@ -41,7 +43,14 @@ struct GitHubSearchView: View {
                 List {
                     ForEach(repoItems) { item in
                         NavigationLink(value: item) {
-                            Text(item.name)
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                
+                                // description
+                                Text(item.description ?? "")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
@@ -97,7 +106,7 @@ struct GitHubSearchView: View {
             
             var repoItems: [RepoItem] = []
             for repo in repos {
-                repoItems.append(RepoItem(name: repo.name, html_url: repo.html_url, language_url: repo.languages_url))
+                repoItems.append(RepoItem(name: repo.name, html_url: repo.html_url, language_url: repo.languages_url, description: repo.description))
             }
             
             return repoItems

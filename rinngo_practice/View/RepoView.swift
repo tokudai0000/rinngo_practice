@@ -34,6 +34,11 @@ struct RepoView: View {
             List {
                 Section(header: Text("基本情報")) {
                     CustomCell(label: "URL", value: "[\(repoItem.html_url)](\(repoItem.html_url))")
+                    
+                    // description
+                    if repoItem.description != nil {
+                        CustomCell(label: "description", value: repoItem.description!)
+                    }
                 }
                 if !langs.isEmpty {
                     Section(header: Text("言語")) {
@@ -83,5 +88,5 @@ struct RepoView: View {
 }
 
 #Preview {
-    RepoView(repoItem: RepoItem(name: "test", html_url: "https://example.com", language_url: "https://api.github.com/repos/rinngo0302/GameCreateSampleGame/languages"), langs: ["Swift", "Objective-C"])
+    RepoView(repoItem: RepoItem(name: "test", html_url: "https://example.com", language_url: "https://api.github.com/repos/rinngo0302/GameCreateSampleGame/languages", description: "test"), langs: ["Swift", "Objective-C"])
 }
