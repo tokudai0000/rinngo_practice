@@ -14,76 +14,98 @@ struct Repo: Decodable {
     let languages_url: String
 }
 
-struct RepoItem: Identifiable {
+struct RepoItem: Identifiable, Hashable {
     let id = UUID()
     let name: String
-    let langs: [String]
-    let url: String
+    let html_url: String
+    let language_url: String
 }
 
 struct GitHubSearchView: View {
-    var repoItems: [RepoItem] = []
+    @State var repoItems: [RepoItem] = []
+    
+    @State var hasLoaded: Bool = false
+    
+    @State var token: String? = nil
     
     var body: some View {
-        Text("Repository Search")
-            .font(.title)
-            .fontWeight(.bold)
         NavigationStack {
-            ForEach(repoItems) { item in
-                NavigationLink(value: item.url) {
-                    Text(item.name)
+            Text("Repository Search")
+                .font(.title)
+                .fontWeight(.bold)
+            
+            if !hasLoaded {
+                ProgressView()
+                Spacer()
+            } else {
+                List {
+                    ForEach(repoItems) { item in
+                        NavigationLink(value: item) {
+                            Text(item.name)
+                        }
+                    }
+                }
+                .navigationDestination(for: RepoItem.self) { item in
+                    RepoView(repoItem: item)
+                }
+                .refreshable {
+                    Task {
+                        repoItems = await fetchRepos(with: token) ?? []
+                    }
                 }
             }
         }
-        .navigationDestination(for: String.self) { url in
-            
-        }
-        
-        Button("Tap") {
+        .onAppear {
             Task {
-                await fetchRepos()
+                self.token = Bundle.main.infoDictionary?["GITHUB_API_TOKEN"] as? String
+                
+                if let repoitems: [RepoItem] = await fetchRepos(with: token) {
+                    repoItems = repoitems
+                    hasLoaded = true
+                    print("リポジトリの情報の取得成功")
+                                        
+                } else {
+                    print("リポジトリの情報の取得ができませんでした")
+                }
             }
         }
     }
     
-    func fetchRepos() async {
+    func fetchRepos(with token: String?) async -> [RepoItem]? {
         let urlStr = "https://api.github.com/users/rinngo0302/repos"
-        guard let url = URL(string: urlStr) else { return }
+        guard let url = URL(string: urlStr) else { return nil }
         
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            // Tokenの適応
+            var request = URLRequest(url: url)
+            
+            if let token = token {
+                request.setValue("token \(token)", forHTTPHeaderField: "Authorization")
+                
+                print("token: \(token)")
+            } else {
+                print("トークンを取得できませんでした")
+            }
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("ステータスコード: \(httpResponse.statusCode)")
+            }
+            
             let repos = try JSONDecoder().decode([Repo].self, from: data)
             
+            var repoItems: [RepoItem] = []
             for repo in repos {
-                print("\(repo.name): \(repo.html_url)")
-                
-                let langs = await fetchLangs(for: repo.languages_url)
-                for lang in langs {
-                    print(lang)
-                }
+                repoItems.append(RepoItem(name: repo.name, html_url: repo.html_url, language_url: repo.languages_url))
             }
+            
+            return repoItems
         } catch {
             print("Error: \(error)")
+            
+            return nil
         }
-    }
-
-    func fetchLangs(for url: String) async -> [String] {
-        var langs: [String] = []
-        
-        guard let url = URL(string: url) else { return [] }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                for (key, _) in jsonData {
-                    langs.append(key)
-                }
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-        
-        return langs
     }
 }
 

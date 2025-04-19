@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct CustomCell: View {
+    var label: String
+    var value: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text(label)
+            Spacer()
+            Text(.init(value))
+                .foregroundColor(.secondary)
+        }
+        .padding(.vertical, 8)
     }
 }
 
 #Preview {
-    CustomCell()
+    CustomCell(label: "test", value: "test value")
 }
