@@ -7,21 +7,24 @@
 
 import SwiftUI
 
-struct CustomCell: View {
+struct CustomLinkCell: View {
     var label: String
     var value: String
+    
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         HStack {
             Text(label)
             Spacer()
-            Text(value)
-                .foregroundColor(.secondary)
+            Button(value) {
+                openURL(URL(string: value)!)
+            }
         }
         .padding(.vertical, 8)
     }
 }
 
 #Preview {
-    CustomCell(label: "test", value: "test value")
+    CustomLinkCell(label: "test", value: "test value")
 }

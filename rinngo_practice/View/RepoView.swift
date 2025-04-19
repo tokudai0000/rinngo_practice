@@ -33,7 +33,7 @@ struct RepoView: View {
         } else {
             List {
                 Section(header: Text("基本情報")) {
-                    CustomCell(label: "URL", value: "[\(repoItem.html_url)](\(repoItem.html_url))")
+                    CustomLinkCell(label: "URL", value: repoItem.html_url)
                     
                     // description
                     if repoItem.description != nil {
