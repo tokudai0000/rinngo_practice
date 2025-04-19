@@ -36,6 +36,7 @@ struct GitHubSearchView: View {
                 .font(.title)
                 .fontWeight(.bold)
             
+            // ProgressView
             if !hasLoaded {
                 ProgressView()
                 Spacer()
@@ -44,6 +45,7 @@ struct GitHubSearchView: View {
                     ForEach(repoItems) { item in
                         NavigationLink(value: item) {
                             VStack(alignment: .leading) {
+                                // repository name
                                 Text(item.name)
                                 
                                 // description
@@ -85,9 +87,9 @@ struct GitHubSearchView: View {
         guard let url = URL(string: urlStr) else { return nil }
         
         do {
-            // Tokenの適応
             var request = URLRequest(url: url)
             
+            // Token
             if let token = token {
                 request.setValue("token \(token)", forHTTPHeaderField: "Authorization")
                 

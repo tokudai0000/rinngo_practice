@@ -40,6 +40,8 @@ struct RepoView: View {
                         CustomCell(label: "description", value: repoItem.description!)
                     }
                 }
+                
+                // Languages
                 if !langs.isEmpty {
                     Section(header: Text("言語")) {
                         ForEach(langs, id: \.self) { lang in
